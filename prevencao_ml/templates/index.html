@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulário Machine Learning</title>
+        <style>
+            h1, h2, h3, label{
+                font-family: monospace;
+            }
+
+            .button{
+                border-color: blue;
+            }
+
+            .button:hover{
+                border-color: red;
+            }
+
+            body{
+                text-align: center;
+            }
+
+            .formulario{
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="formulario">
+            <header>
+                <div>
+                     {% load static %}
+                     <img src="{% static 'prevencao_ml/3con.png' %}" alt='logo_3con'>
+                    <h3> 3CON Consultoria e Sistemas </h3>
+                    <h1> Questionário Prevenção de Doenças </h1>
+                </div>
+            </header>
+            <main>
+                <form action="{% url 'result' %}">
+                    {% csrf_token %}
+                    <section>
+                        <div>
+                            <label for="p">
+                                <h3>Informe seu peso:</h3>
+                                <input required type="number" name="peso" id="p" placeholder="Ex: 63">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="alt">
+                                <h3>Informe sua altura:</h3>
+                                <input required type="number" name="altura" id="alt" placeholder="Ex: 175">
+                            </label>
+                        </div>
+                        <div>
+                            <h3>Sistolica:</h3>
+                            <select required class="" name="sistolica">
+                                <option value="0">Não sei responder</option>
+                                <option value="1">Abaixo de 12</option>
+                                <option value="2">De 12 a 14</option>
+                                <option value="3">15 e acima</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Diastolica:</h3>
+                            <select required class="" name="diastolica">
+                                <option value="0">Não sei responder</option>
+                                <option value="1">Abaixo de 8</option>
+                                <option value="2">Entre 8 e 9</option>
+                                <option value="3">Entre 10 a 11</option>
+                                <option value="4">12 e acima</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Faz uso de medicamentos:</h3>
+                            <label for="s-usa"><input type="radio" name="usa_medicamentos" id="s-usa" value="1">Sim</label>
+                            <label for="n-usa"><input checked type="radio" name="usa_medicamentos" id="n-usa" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Realizou cirurgia de:</h3>
+                            <select required class="" name="cirurgia">
+                                <option value="0">Nenhuma</option>
+                                <option value="1">Ortopédica</option>
+                                <option value="2">Cardio</option>
+                                <option value="3">Gastro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Possui hipertensão:</h3>
+                            <label for="s-hiper"><input type="radio" name="hipertensao" id="s-hiper" value="1">Sim</label>
+                            <label for="n-hiper"><input checked type="radio" name="hipertensao" id="n-hiper" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Possui diabetes:</h3>
+                            <label for="s-diab"><input type="radio" name="diabetes" id="s-diab" value="1">Sim</label>
+                            <label for="n-diab"><input checked type="radio" name="diabetes" id="n-diab" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Possui depressão:</h3>
+                            <label for="s-dep"><input type="radio" name="depressao" id="s-dep" value="1">Sim</label>
+                            <label for="n-dep"><input checked type="radio" name="depressao" id="n-dep" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Possui dor crônica:</h3>
+                            <label for="s-dor"><input type="radio" name="dor_cronica" id="s-dor" value="1">Sim</label>
+                            <label for="n-dor"><input checked type="radio" name="dor_cronica" id="n-dor" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Possui câncer:</h3>
+                            <label for="s-cancer"><input type="radio" name="cancer" id="s-cancer" value="1">Sim</label>
+                            <label for="n-cancer"><input checked type="radio" name="cancer" id="n-cancer" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Possui alguma outra doença não citada:</h3>
+                            <label for="s-out"><input type="radio" name="outra_doenca" id="s-out" value="1">Sim</label>
+                            <label for="n-out"><input checked type="radio" name="outra_doenca" id="n-out" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Qual frequência vai ao médico:</h3>
+                            <select required class="" name="freq_medico">
+                                <option value="0">Nunca</option>
+                                <option value="1">Anualmente</option>
+                                <option value="2">Semestralmente</option>
+                                <option value="3">Mensalmente</option>
+                                <option value="4">Quinzenalmente</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Qual frequência realiza exames médicos:</h3>
+                            <select required class="" name="freq_exame">
+                                <option value="0">Nunca</option>
+                                <option value="1">Anualmente</option>
+                                <option value="2">Semestralmente</option>
+                                <option value="3">Mensalmente</option>
+                                <option value="4">Quinzenalmente</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Fuma:</h3>
+                            <label for="s-fuma"><input type="radio" name="fuma" id="s-fuma" value="1">Sim</label>
+                            <label for="n-fuma"><input checked type="radio" name="fuma" id="n-fuma" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Parou de fumar:</h3>
+                            <select required class="" name="parou_fumar">
+                                <option value="0">Não fumo/Não parei</option>
+                                <option value="1">Menos de 1 ano</option>
+                                <option value="2">Entre 1 e 2 anos</option>
+                                <option value="3">Acima de 2 anos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Bebe:</h3>
+                            <label for="s-bebe"><input type="radio" name="bebe" id="s-bebe" value="1">Sim</label>
+                            <label for="n-bebe"><input checked type="radio" name="bebe" id="n-bebe" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Quantidade de bebida:</h3>
+                            <select required class="" name="qtd_bebida">
+                                <option value="0">Não bebo</option>
+                                <option value="1">Até 2 taças/copos</option>
+                                <option value="2">Entre 3 e 6 taças/copos</option>
+                                <option value="3">Acima de 6 taças/copos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Usa drogas:</h3>
+                            <label for="s-uso"><input type="radio" name="usa_droga" id="s-uso" value="1">Sim</label>
+                            <label for="n-uso"><input checked type="radio" name="usa_droga" id="n-uso" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Realiza atividade fisica:</h3>
+                            <label for="s-atv"><input type="radio" name="atv_fisica" id="s-atv" value="1">Sim</label>
+                            <label for="n-atv"><input checked type="radio" name="atv_fisica" id="n-atv" value="0">Não</label>
+                        </div>
+                        <div>
+                            <h3>Tempo dedicado para atividade fisica:</h3>
+                            <select required class="" name="hora_atv_fisica">
+                                <option value="0">Não faço atividade fisica</option>
+                                <option value="1">De 1 a 3 dias por semana</option>
+                                <option value="2">De 4 a 6 dias por semana</option>
+                                <option value="3">Todos os dias da semana</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Considera sua alimentação saudável:</h3>
+                            <label for="s-alim"><input type="radio" name="alimentacao_saudavel" id="s-alim" value="1">Sim</label>
+                            <label for="n-alim"><input checked type="radio" name="alimentacao_saudavel" id="n-alim" value="0">Não</label>
+                        </div>
+                        <div>
+                            <label for="ans">
+                                <h3>Qual seu nivel de ansiedade:</h3>
+                                <input required type="number" name="ansiedade" id="ans" placeholder="De 0 a 10">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="est">
+                                <h3>Qual seu nivel de estresse:</h3>
+                                <input required type="number" name="estresse" id="est" placeholder="De 0 a 10">
+                            </label>
+                        </div>
+                        <div>
+                            <p></p>
+                            <input class="button" type="submit">
+                        </div>
+                    </section>
+                </form>
+            </main>
+        </div>
+    </body>
+</html>
